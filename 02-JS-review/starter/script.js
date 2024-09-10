@@ -142,3 +142,41 @@ function getBooks() {
 function getBook(id) {
   return data.find((d) => d.id === id);
 }
+
+const book = getBook(2);
+
+// const title = book.title;
+// title;
+// const author = book.author;
+// author;
+
+const { title, author, pages, publicationDate, genres, hasMovieAdaptation } =
+  getBook(2);
+title;
+author;
+genres;
+
+const [primaryGenre, secondaryGenre, ...otherGenres] = genres;
+primaryGenre;
+secondaryGenre;
+console.log(otherGenres);
+
+newGenres = [...genres, "new genre"];
+newGenres;
+
+const updatedBook = { ...book, movieDate: "2022-01-01" };
+updatedBook;
+
+const summary = `${title}, a book by ${author}, has ${pages} pages and was published on ${publicationDate}.`;
+summary;
+
+function getYear(str) {
+  return str.split("-")[0];
+}
+console.log(getYear(publicationDate));
+
+(str) => str.split("-")[0];
+
+(str) => {
+  return str.split("-")[0];
+};
