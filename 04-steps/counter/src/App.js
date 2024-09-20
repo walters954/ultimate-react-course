@@ -44,7 +44,9 @@ function Counter() {
             <div>
                 {count} days from today is {date.toDateString()}
             </div>
-            <button onClick={handleReset}>Reset</button>
+            {count !== 0 || step !== 1 ? (
+                <button onClick={handleReset}>Reset</button>
+            ) : null}
         </>
     );
 }
