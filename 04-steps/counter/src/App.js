@@ -3,12 +3,12 @@ import { useState } from "react";
 export default function App() {
     return (
         <div>
-            <DateCounter></DateCounter>
+            <Counter></Counter>
         </div>
     );
 }
 
-function DateCounter() {
+function Counter() {
     const [step, setStep] = useState(1);
     const [count, setCount] = useState(0);
 
