@@ -45,32 +45,33 @@ const questions = [
 ];
 
 function FlashCards() {
+    const [selectedId, setSelectedId] = useState(null);
+
+    function handleClick(id) {
+        setSelectedId(id !== selectedId ? id : null);
+    }
+
     return (
         <div className="flashcards">
             {questions.map((question) => (
                 <Card
                     key={question.id}
+                    id={question.id}
                     question={question.question}
                     answer={question.answer}
+                    selectedId={selectedId}
+                    handleClick={handleClick}
                 />
             ))}
         </div>
     );
 }
 
-function Card({ question, answer }) {
-    const [isFront, setIsFront] = useState(true);
-
+function Card({ id, question, answer, selectedId, handleClick }) {
     return (
-        <div className="card" onClick={() => setIsFront(!isFront)}>
-            <div style={isFront ? { display: "block" } : { display: "none" }}>
-                <p>{question}</p>
-            </div>
-            <div
-                style={isFront ? { display: "none" } : { display: "block" }}
-                className={isFront ? "" : "selected"}
-            >
-                <p>{answer}</p>
+        <div key={id} onClick={() => handleClick(id)}>
+            <div className={selectedId === id ? "selected" : ""}>
+                {selectedId === id ? answer : question}
             </div>
         </div>
     );
