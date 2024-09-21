@@ -1,3 +1,5 @@
+import Accordion from "./Accordion";
+
 const faqs = [
     {
         title: "Where are these chairs assembled?",
@@ -16,11 +18,7 @@ const faqs = [
 export default function App() {
     return (
         <div>
-            <Accordion />
+            <Accordion data={faqs} />
         </div>
     );
-}
-
-function Accordion() {
-    return <div>TODO</div>;
 }
