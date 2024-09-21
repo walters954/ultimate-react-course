@@ -1,6 +1,6 @@
 import { useState } from "react";
 import Logo from "./Logo";
-import Form from "./components/Form";
+import Form from "./Form";
 import PackingList from "./PackingList";
 import Stats from "./Stats";
 const initialItems = [
