@@ -1,6 +1,8 @@
 import { useState } from "react";
 
 export default function Accordion({ data }) {
+    const [currentItem, setCurrentItem] = useState(null);
+
     return (
         <div>
             <h1>Accordion</h1>
@@ -10,24 +12,27 @@ export default function Accordion({ data }) {
                         key={index}
                         number={index + 1}
                         title={item.title}
-                        text={item.text}
-                    />
+                        currentItem={currentItem}
+                        onOpen={setCurrentItem}
+                    >
+                        {item.text}
+                    </Item>
                 ))}
             </div>
         </div>
     );
 }
 
-function Item({ number, title, text }) {
-    const [isOpen, setIsOpen] = useState(false);
+function Item({ number, title, currentItem, onOpen, children }) {
+    const isOpen = number === currentItem;
 
     function handleToggle() {
-        setIsOpen((isOpen) => !isOpen);
+        onOpen(isOpen ? null : number);
     }
 
     return (
-        <div className="item">
-            <div className="title" onClick={handleToggle}>
+        <div className="item" onClick={handleToggle}>
+            <div className="title">
                 <span className="number">{number}</span>
                 {title}
                 <span className="icon">{isOpen ? "-" : "+"}</span>
@@ -36,7 +41,7 @@ function Item({ number, title, text }) {
                 className="content-box open"
                 style={isOpen ? { height: "auto" } : { display: "none" }}
             >
-                <p className="text">{text}</p>
+                <p className="text">{children}</p>
             </div>
         </div>
     );
