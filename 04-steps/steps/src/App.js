@@ -31,31 +31,51 @@ export default function App() {
                         <div className={step >= 3 ? "active" : ""}>3</div>
                     </div>
 
-                    <p className="message">
-                        Step {step}: {messages[step - 1]}
-                    </p>
+                    <StepMessage step={step}>
+                        <p>
+                            Step {step}: {messages[step - 1]}
+                        </p>
+                    </StepMessage>
                     <div className="buttons">
-                        <button
-                            style={{
-                                backgroundColor: "#7950f2",
-                                color: "#fff",
-                            }}
+                        <Button
+                            textColor="#fff"
+                            bgColor="#7950f2"
                             onClick={handlePrevious}
                         >
+                            <span>👈</span>
                             Previous
-                        </button>
-                        <button
-                            style={{
-                                backgroundColor: "#7950f2",
-                                color: "#fff",
-                            }}
+                        </Button>
+                        <Button
+                            textColor="#fff"
+                            bgColor="#7950f2"
                             onClick={handleNext}
                         >
+                            <span>👉</span>
                             Next
-                        </button>
+                        </Button>
                     </div>
                 </div>
             )}
+        </div>
+    );
+}
+
+function Button({ textColor, bgColor, onClick, children }) {
+    return (
+        <button
+            style={{ backgroundColor: bgColor, color: textColor }}
+            onClick={onClick}
+        >
+            {children}
+        </button>
+    );
+}
+
+function StepMessage({ step, children }) {
+    return (
+        <div className="message">
+            <h3>Step {step}</h3>
+            {children}
         </div>
     );
 }
