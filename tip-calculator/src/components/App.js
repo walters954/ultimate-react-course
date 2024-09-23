@@ -16,16 +16,21 @@ function App() {
                 friendService={friendService}
                 setFriendService={setFriendService}
             />
-            <Tip
-                yourService={yourService}
-                friendService={friendService}
-                bill={bill}
-            />
-            <Reset
-                setBill={setBill}
-                setYourService={setYourService}
-                setFriendService={setFriendService}
-            />
+            {bill > 0 && (
+                <>
+                    <Tip
+                        yourService={yourService}
+                        friendService={friendService}
+                        bill={bill}
+                    />
+
+                    <Reset
+                        setBill={setBill}
+                        setYourService={setYourService}
+                        setFriendService={setFriendService}
+                    />
+                </>
+            )}
         </div>
     );
 }
