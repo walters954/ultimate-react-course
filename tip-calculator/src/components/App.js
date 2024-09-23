@@ -45,28 +45,33 @@ function Bill({ bill, setBill }) {
 
 function YourService({ yourService, setYourService }) {
     return (
-        <div>
+        <ServiceQualitySelector
+            service={yourService}
+            onServiceChange={setYourService}
+        >
             <p>How did you like the service?</p>
-            <select
-                value={yourService}
-                onChange={(e) => setYourService(Number(e.target.value))}
-            >
-                <option value={0}>Dissatisfied (0%)</option>
-                <option value={0.05}>It was okay (5%)</option>
-                <option value={0.1}>It was good (10%)</option>
-                <option value={0.2}>It was amazing (20%)</option>
-            </select>
-        </div>
+        </ServiceQualitySelector>
     );
 }
 
 function FriendService({ friendService, setFriendService }) {
     return (
-        <div>
+        <ServiceQualitySelector
+            service={friendService}
+            onServiceChange={setFriendService}
+        >
             <p>How did your friend like the service?</p>
+        </ServiceQualitySelector>
+    );
+}
+
+function ServiceQualitySelector({ service, onServiceChange, children }) {
+    return (
+        <div>
+            {children}
             <select
-                value={friendService}
-                onChange={(e) => setFriendService(Number(e.target.value))}
+                value={service}
+                onChange={(e) => onServiceChange(Number(e.target.value))}
             >
                 <option value={0}>Dissatisfied (0%)</option>
                 <option value={0.05}>It was okay (5%)</option>
@@ -76,7 +81,6 @@ function FriendService({ friendService, setFriendService }) {
         </div>
     );
 }
-
 function Tip({ yourService, friendService, bill }) {
     const tipAmount = (yourService + friendService) * bill;
     const totalAmount = bill + tipAmount;
